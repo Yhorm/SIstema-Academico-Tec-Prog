@@ -1,10 +1,8 @@
 #include "Headers/Pessoa.hpp"
 #include <ctime>
 
-using namespace std;
 
-
-Pessoa::Pessoa(int dNasc, int mNasc, int aNasc, string nomeP)
+Pessoa::Pessoa(int dNasc, int mNasc, int aNasc, std::string nomeP)
 {
     pDia = dNasc;
     pMes = mNasc;
@@ -12,6 +10,13 @@ Pessoa::Pessoa(int dNasc, int mNasc, int aNasc, string nomeP)
     nome = nomeP;
     pIdade = -1;
 }
+
+Pessoa::Pessoa()
+{
+	Inicializa();
+}
+
+
 
 void Pessoa::calcula_idade()
 {
