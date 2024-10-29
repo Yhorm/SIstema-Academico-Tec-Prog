@@ -13,7 +13,7 @@ class Pessoa {
         int pDia, pMes, pAno, pIdade;
 		std::string nome;
 
-		Universidade* MatriculadoEm;
+		Universidade* afiliado;
 
     public:
 	Pessoa(int dNasc = -1, int mNasc = -1, int aNasc = -1, std::string nomeP = " ");
@@ -38,9 +38,10 @@ class Pessoa {
 	const std::string getName() { return nome; };
 	void setName(const std::string n) { nome = n; };
 
-	const bool getMatriculado() { return (MatriculadoEm == NULL); };
-	const Universidade* getUnivMatriculado() { return MatriculadoEm; };
-	void setMatricula(Universidade* u);
+	const Universidade* getAfiliado() { return afiliado; };
+	void setAfiliacao(Universidade* u);
+
+	void printAfiliacao();
 };
 
 

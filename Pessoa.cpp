@@ -42,13 +42,22 @@ void Pessoa::calcula_idade()
     }
 }
 
-void Pessoa::setMatricula(Universidade* u)
+void Pessoa::setAfiliacao(Universidade* u)
 {
     if(u == NULL)
     {
         std::cout << "Erro ao matricular aluno em universidade nula" << std::endl;
     }
 
-    MatriculadoEm = u;
+    afiliado = u;
 }
 
+void Pessoa::printAfiliacao() 
+{
+    if(this->getAfiliado() == NULL)
+    {
+        std::cout << "A Pessoa " << this->getName() << " não possui afiliação." << std::endl;
+    }
+    
+    std::cout << "A Pessoa " << this->getName() << " está afiliado a universidade " << afiliado->getNome() << std::endl;
+}

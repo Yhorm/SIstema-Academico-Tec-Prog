@@ -15,14 +15,14 @@ class Departamento
         //lista de disciplinas(TO-DO)
 
     public:
-        Departamento();
+        Departamento(const int i);
         ~Departamento();
 
-        void setUniv(const Universidade* univCad = NULL);
+        void setUniv(Universidade* univCad = NULL);
         const Universidade* getUniv() {return pUniv; };
 
         const unsigned int getID() { return ID; };
-        
-
+        void setId(const int i) { ID = i; };
+    
 };
 
