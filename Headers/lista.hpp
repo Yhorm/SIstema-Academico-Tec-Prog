@@ -3,13 +3,13 @@
 
 #pragma once
 
-namespace lista
+namespace listas
 {
-    template <class E> 
+    template <class TL> 
     class lista {
         private:
-            Elemento<E>* head;
-            Elemento<E>* tail;
+            Elemento<TL>* head;
+            Elemento<TL>* tail;
 
             unsigned int size;
 
@@ -17,29 +17,29 @@ namespace lista
             lista();
             ~lista();
 
-            void AddElemento(const E* pElem );
-            void removeElemento(const E* pElem);
+            void push_back(const TL* pElem);
+            void pop(const TL* pElem);
 
             const unsigned int getSize() { return size; };
             void setSize(const int s) { this->size = s; };
 
-            const Elemento<E>* getHead() { return head; };
-            const Elemento<E>* getTail() { return tail; };
+            const Elemento<TL>* getHead() { return head; };
+            const Elemento<TL>* getTail() { return tail; };
 
-            void setHead( const Elemento<E>* h) { this->head = h; };
-            void setTail( const Elemento<E>* t) { this->tail = t };
+            void setHead( const Elemento<TL>* h) { this->head = h; };
+            void setTail( const Elemento<TL>* t) { this->tail = t };
 
             void limpaLista();
     };
 
-    template<class E>lista<E>::lista() :
+    template<class TL>lista<TL>::lista() :
         head(nullptr), tail(nullptr), size(0)
     {
     }
 
-    template<class E>lista<E>::~lista() { limpaLista(); }
+    template<class TL>lista<TL>::~lista() { limpaLista(); }
 
-    template<class E> void lista<E>::AddElemento (const E* pElem)
+    template<class TL> void lista<TL>::push_back (const TL* pElem)
     {
         if(pElem == nullptr)
         {
@@ -48,7 +48,7 @@ namespace lista
             exit(1);
         }
         
-        Elemento<E> newEle = new Elemento<E>();
+        Elemento<TL> newEle = new Elemento<TL>();
 
         if(newEle == nullptr)
         {
@@ -76,7 +76,7 @@ namespace lista
         this->setSize(size++);
     }
 
-    template<class E> void lista<E>::removeElemento (const E* pElem)
+    template<class TL> void lista<TL>::pop (const TL* pElem)
     {
         if(pElem == nullptr)
         {
@@ -85,8 +85,8 @@ namespace lista
             exit(1);
         }
 
-        Elemento<E> aux1 = this->getHead();
-        Elemento<E> aux2 = nullptr;
+        Elemento<TL> aux1 = this->getHead();
+        Elemento<TL> aux2 = nullptr;
 
         while(aux1 != nullptr && aux1->getInfo() != pElem) 
         {
@@ -99,7 +99,7 @@ namespace lista
             std::cout << "Elemento não localizado na lista." << std::endl;
         }
 
-        if(aux1->getInfo() == this->getHead() )
+        if(aux1->getInfo() == this->getHead()->getInfo())
         {
             if(this->getHead()->getNext() == nullptr)
             {                   
@@ -111,7 +111,7 @@ namespace lista
             delete(aux1);
         }
 
-        if(aux1->getInfo() == this->getTail())
+        if(aux1->getInfo() == this->getTail()->getInfo())
         {
             if(this->getTail()->getPrev() == nullptr)
             {
@@ -129,15 +129,15 @@ namespace lista
     }
 
 
-    template<class E> void lista<E>::limpaLista() 
+    template<class TL> void lista<TL>::limpaLista() 
     {
-        Elemento<E> aux1 = this->getHead();
-        Elemento<E> aux2 = nullptr;
+        Elemento<TL> aux1 = this->getHead();
+        Elemento<TL> aux2 = nullptr;
 
 
         while(aux1->getNext() != nullptr)
         {
-            E* elemRemovido = aux1->getInfo();
+            TL* elemRemovido = aux1->getInfo();
             if(elemRemovido != nullptr)
             {
                 delete(elemRemovido);

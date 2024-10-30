@@ -4,23 +4,24 @@
 
 class Universidade;
 
-Departamento::Departamento(const int i) :
-    pUniv(NULL), ID(i)
+Departamento::Departamento(const int i, std::string n) :
+    pUnivAssoc(NULL), ID(i), nome(n)
 {
+    
 }
 
 Departamento::~Departamento()
 {
-    pUniv = NULL;
+    pUnivAssoc = NULL;
 }
 
-void Departamento::setUniv(Universidade* univCad)
+void Departamento::setUnivAssoc(Universidade* univCad)
 {
     if(univCad == NULL)
     {
         std::cout << "ERRO AO ADICIONAR PONTEIRO NULO" << std::endl;
     }
 
-    pUniv = univCad;
+    pUnivAssoc = univCad;
 }
 

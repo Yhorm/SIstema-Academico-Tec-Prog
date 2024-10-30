@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "Headers/Departamento.hpp"
+#include "Headers/lista.hpp"
 
 #pragma once
 
@@ -12,7 +13,10 @@ class Universidade
         std::string nome;
 
         unsigned int qtdAlunos;
+        unsigned int qtdProfessores;
         unsigned int qtdDptos;
+
+        listas::lista<Departamento> depList;
 
     public:
         Universidade(const int i, const std::string n = "");
@@ -27,4 +31,5 @@ class Universidade
         void setQtdAlunos(const int qtd) { qtdAlunos = qtd; };
         void setQtdDptos(const int qtd) { qtdDptos = qtd; };
 
+        void insertDpto(Departamento* pDpto) { depList.push_back(pDpto); }
 };

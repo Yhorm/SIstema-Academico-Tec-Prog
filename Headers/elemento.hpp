@@ -2,7 +2,7 @@
 
 #pragma once
 
-namespace lista
+namespace listas
 {
     template<class TE>
     class Elemento

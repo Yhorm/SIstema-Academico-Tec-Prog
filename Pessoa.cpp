@@ -42,22 +42,51 @@ void Pessoa::calcula_idade()
     }
 }
 
-void Pessoa::setAfiliacao(Universidade* u)
+void Pessoa::setUniAfiliado(Universidade* u)
 {
     if(u == NULL)
     {
-        std::cout << "Erro ao matricular aluno em universidade nula" << std::endl;
+        std::cerr << "Erro ao relacionar pessoa em universidade nula" << std::endl;
+        fflush(stdin);
+        exit(1);
     }
 
-    afiliado = u;
+    uniAfiliado = u;
+}
+
+void Pessoa::setDptoAfiliado(Departamento* d)
+{
+    if(d == NULL)
+    {
+        std::cerr << "Erro ao relacionar pessoa em um departamento nulo" << std::endl;
+        fflush(stdin);
+        exit(1);
+    }
+
+    depAfiliado = d;
+
 }
 
 void Pessoa::printAfiliacao() 
 {
-    if(this->getAfiliado() == NULL)
+    if(this->getUniAfiliado() == NULL && this->getDptoAfiliado() == NULL)
     {
         std::cout << "A Pessoa " << this->getName() << " não possui afiliação." << std::endl;
     }
+
+    else if(this->getUniAfiliado() == NULL && this->getDptoAfiliado() != NULL)
+    {
+        std::cout << "A Pessoa " << this->getName() << " não está afiliado a alguma universidade "
+        << " Mas está afiliado ao departamento " << depAfiliado->getNome() << std::endl;
+    }
     
-    std::cout << "A Pessoa " << this->getName() << " está afiliado a universidade " << afiliado->getNome() << std::endl;
+    else if(this->getUniAfiliado() != NULL && this ->getDptoAfiliado() == NULL)
+    {
+        std::cout << "A Pessoa " << this->getName() << " está afiliado a alguma universidade " << uniAfiliado->getNome() 
+        << " Mas não está afiliado a um departamento." << std::endl;
+    }
+    else 
+    {
+        std::cout << "A Pessoa " << this->getName() << " está afiliado a universidade " << uniAfiliado->getNome() << " E ao departamento " << depAfiliado->getNome() << std::endl;
+    }
 }
