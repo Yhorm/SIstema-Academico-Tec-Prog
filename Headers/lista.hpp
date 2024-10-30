@@ -5,7 +5,7 @@
 
 namespace listas
 {
-    template <class TL> 
+    template <class TL>
     class lista {
         private:
             Elemento<TL>* head;
@@ -17,8 +17,8 @@ namespace listas
             lista();
             ~lista();
 
-            void push_back(const TL* pElem);
-            void pop(const TL* pElem);
+            void push_back(TL* pElem);
+            void pop(TL* pElem);
 
             const unsigned int getSize() { return size; };
             void setSize(const int s) { this->size = s; };
@@ -26,8 +26,8 @@ namespace listas
             const Elemento<TL>* getHead() { return head; };
             const Elemento<TL>* getTail() { return tail; };
 
-            void setHead( const Elemento<TL>* h) { this->head = h; };
-            void setTail( const Elemento<TL>* t) { this->tail = t };
+            void setHead(Elemento<TL>* h) { this->head = h; };
+            void setTail(Elemento<TL>* t) { this->tail = t };
 
             void limpaLista();
     };
@@ -39,7 +39,7 @@ namespace listas
 
     template<class TL>lista<TL>::~lista() { limpaLista(); }
 
-    template<class TL> void lista<TL>::push_back (const TL* pElem)
+    template<class TL> void lista<TL>::push_back (TL* pElem)
     {
         if(pElem == nullptr)
         {
@@ -47,7 +47,7 @@ namespace listas
             fflush(stdin);
             exit(1);
         }
-        
+
         Elemento<TL> newEle = new Elemento<TL>();
 
         if(newEle == nullptr)
@@ -60,13 +60,13 @@ namespace listas
         newEle->setInfo(pElem);
         newEle->setNext(nullptr);
         newEle->setPrev(nullptr);
-        
+
         if(head == nullptr)
         {
             this->setHead(newEle);
             this->setTail(newEle);
         }
-        else 
+        else
         {
             this->tail->setNext(newEle);
             newEle->setPrev(this->tail);
@@ -76,7 +76,7 @@ namespace listas
         this->setSize(size++);
     }
 
-    template<class TL> void lista<TL>::pop (const TL* pElem)
+    template<class TL> void lista<TL>::pop (TL* pElem)
     {
         if(pElem == nullptr)
         {
@@ -88,7 +88,7 @@ namespace listas
         Elemento<TL> aux1 = this->getHead();
         Elemento<TL> aux2 = nullptr;
 
-        while(aux1 != nullptr && aux1->getInfo() != pElem) 
+        while(aux1 != nullptr && aux1->getInfo() != pElem)
         {
             aux2 = aux1;
             aux1 = aux1->getNext();
@@ -102,12 +102,12 @@ namespace listas
         if(aux1->getInfo() == this->getHead()->getInfo())
         {
             if(this->getHead()->getNext() == nullptr)
-            {                   
+            {
                 delete(aux1);
             }
 
             aux2 = this->getHead()->getNext();
-            aux2->setPrev(this->getTail());        
+            aux2->setPrev(this->getTail());
             delete(aux1);
         }
 
@@ -129,7 +129,7 @@ namespace listas
     }
 
 
-    template<class TL> void lista<TL>::limpaLista() 
+    template<class TL> void lista<TL>::limpaLista()
     {
         Elemento<TL> aux1 = this->getHead();
         Elemento<TL> aux2 = nullptr;
@@ -152,7 +152,7 @@ namespace listas
         this->setHead(nullptr);
         this->setTail(nullptr);
         this->setSize(0);
-        
+
     };
 
 };

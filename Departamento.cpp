@@ -5,9 +5,9 @@
 class Universidade;
 
 Departamento::Departamento(const int i, std::string n) :
-    pUnivAssoc(NULL), ID(i), nome(n)
+    pUnivAssoc(NULL), ID(i), nome(n), listaDisci()
 {
-    
+
 }
 
 Departamento::~Departamento()
